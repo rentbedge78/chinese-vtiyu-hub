@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>V体育 · 体育资料与索引指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f1f6f8;
+            color: #1a2c33;
+            line-height: 1.6;
+            padding: 1.25rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 12px 32px rgba(25, 70, 80, 0.06);
+            overflow: hidden;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* hero 简写区 */
+        .hero {
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #d0e5ea;
+            padding-bottom: 1.8rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #10535e;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .hero h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #437a86;
+            background: #e3f0f4;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            margin-left: 0.25rem;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin-top: 0.9rem;
+            color: #2f525c;
+            font-size: 1.05rem;
+        }
+
+        .hero .badge-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .badge-item {
+            background: #e3f0f4;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1a5e6b;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .badge-item::before {
+            content: "⊞";
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* 卡片网格 */
+        .grid-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #fafcfd;
+            border-radius: 22px;
+            padding: 1.6rem 1.4rem 1.6rem;
+            box-shadow: 0 2px 8px rgba(32, 88, 98, 0.04);
+            border: 1px solid #d9e8ec;
+            transition: transform 0.1s ease, box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(10, 75, 85, 0.08);
+            border-color: #b0d2da;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0b4d59;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card h3 i {
+            font-style: normal;
+            background: #cde3e9;
+            width: 1.8rem;
+            height: 1.8rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 0.2rem;
+            color: #115a67;
+            font-size: 0.9rem;
+        }
+
+        .card p {
+            color: #2c4b55;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .insight {
+            background: #eef6f9;
+            border-radius: 14px;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.7rem;
+            font-size: 0.88rem;
+            border-left: 4px solid #6baebd;
+            color: #1c505c;
+        }
+
+        /* 使用场景 + 提醒卡片双列 */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .col-block {
+            background: #f5fafc;
+            border-radius: 24px;
+            padding: 1.5rem 1.6rem;
+            border: 1px solid #d4e3e8;
+        }
+
+        .col-block h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0b4d59;
+            margin-bottom: 1rem;
+            border-bottom: 2px dashed #b6d2da;
+            padding-bottom: 0.4rem;
+        }
+
+        .col-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .col-block li {
+            padding: 0.45rem 0;
+            display: flex;
+            gap: 0.6rem;
+            align-items: flex-start;
+            font-size: 0.98rem;
+            color: #1b404b;
+        }
+
+        .col-block li::before {
+            content: "·";
+            color: #3c8b9b;
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .col-block .note {
+            background: white;
+            border-radius: 16px;
+            padding: 0.9rem 1.1rem;
+            margin-top: 1.2rem;
+            font-size: 0.92rem;
+            box-shadow: 0 1px 4px rgba(50, 90, 100, 0.03);
+            border: 1px solid #cfdfe4;
+        }
+
+        /* faq 摘要 */
+        .faq-mini {
+            background: #f0f7f9;
+            border-radius: 30px;
+            padding: 1.6rem 1.8rem;
+            margin: 2.2rem 0 1.2rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0c4f5b;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #d3e3e8;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #1a5e6b;
+            font-size: 0.98rem;
+        }
+
+        .faq-a {
+            color: #2f525c;
+            font-size: 0.93rem;
+            margin-top: 0.15rem;
+            max-width: 90%;
+        }
+
+        .link-sentence {
+            background: #f8fbfc;
+            border-radius: 40px;
+            padding: 1rem 1.4rem;
+            text-align: center;
+            margin: 1.8rem 0 0.5rem;
+            border: 1px solid #d3e1e6;
+            font-size: 1rem;
+        }
+
+        .link-sentence a {
+            color: #0a6f7e;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #b2d7df;
+            padding-bottom: 1px;
+            transition: border-color 0.1s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom-color: #096775;
+            color: #054d58;
+        }
+
+        .footnote {
+            margin-top: 2.5rem;
+            font-size: 0.85rem;
+            color: #5b7983;
+            text-align: center;
+            border-top: 1px solid #dae6ea;
+            padding-top: 1.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .page {
+                padding: 1.2rem 1rem 2rem;
+                border-radius: 20px;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .grid-card {
+                grid-template-columns: 1fr;
+            }
+            .hero .badge-grid {
+                gap: 0.5rem;
+            }
+            .faq-mini {
+                padding: 1.2rem;
+            }
+            .link-sentence {
+                font-size: 0.95rem;
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 small {
+                display: block;
+                margin-left: 0;
+                margin-top: 0.2rem;
+                width: fit-content;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero 区 -->
+    <div class="hero">
+        <h1>
+            V体育
+            <small>资料索引库</small>
+        </h1>
+        <p>
+            一份围绕体育领域整理的轻量信息页面，聚合赛事背景、规则摘要与术语对照。不是官方站点，而是为爱好者提供集中阅览的索引式笔记。
+        </p>
+        <div class="badge-grid">
+            <span class="badge-item">赛事结构</span>
+            <span class="badge-item">术语手册</span>
+            <span class="badge-item">规则对比</span>
+            <span class="badge-item">背景梳理</span>
+            <span class="badge-item">信息卡片</span>
+        </div>
+    </div>
+
+    <!-- 亮点网格 产品说明 -->
+    <div class="grid-card">
+        <div class="card">
+            <h3><i>📋</i> 摘要式整理</h3>
+            <p>从公开资料中提取关键规则、联赛框架与历史沿革，避免碎片化搜索。每个条目都经过交叉比对，适合快速查阅。</p>
+            <div class="insight">⚡ 覆盖至少12个运动项目的基础框架，持续补充。</div>
+        </div>
+        <div class="card">
+            <h3><i>🧩</i> 结构化亮点</h3>
+            <p>通过标签、层级和对照表呈现信息，减少冗余阅读。用卡片形式拆解复杂规则，降低理解门槛。</p>
+            <div class="insight">🧠 所有内容均标注参考来源与版本日期。</div>
+        </div>
+        <div class="card">
+            <h3><i>🔄</i> 使用场景建议</h3>
+            <p>适合赛前规则预习、资料比对、术语查询或内容编写参考。非实时数据平台，而是静态知识库。</p>
+            <div class="insight">📌 建议搭配官方规则书或实时数据源交叉使用。</div>
+        </div>
+    </div>
+
+    <!-- 双列: 使用建议 + 提示说明 -->
+    <div class="two-col">
+        <div class="col-block">
+            <h2>📌 使用建议</h2>
+            <ul>
+                <li>浏览前先查阅项目索引，定位所需运动分类。</li>
+                <li>规则摘要仅为基础版本，重大赛事请以官方文件为准。</li>
+                <li>术语对照表提供中英及常用缩写，适合快速扫读。</li>
+                <li>部分历史背景来自公开档案，如有更新请以权威来源为准。</li>
+                <li>可结合移动端收藏或桌面端标签页长期参考。</li>
+            </ul>
+            <div class="note">
+                ⚙️ 本页内容每季度核对并修订，标注「修订日期」以便追踪。
+            </div>
+        </div>
+        <div class="col-block">
+            <h2>🔍 可信提示</h2>
+            <ul>
+                <li>所有资料均整理自公开、可查证的信息源。</li>
+                <li>不提供实时比分、投注参考或主观预测。</li>
+                <li>不保证绝对无遗漏，欢迎指正与补充。</li>
+                <li>外部链接仅作延伸阅读，不对第三方内容负责。</li>
+                <li>请合理使用，勿将摘要用于正式裁决或商业决策。</li>
+            </ul>
+            <div class="note">
+                🛡️ 若发现显著错误或过时内容，可通过页面渠道提交反馈（暂未开放评论）。
+            </div>
+        </div>
+    </div>
+
+    <!-- faq 摘要 -->
+    <div class="faq-mini">
+        <h2>❓ 常见疑问摘要</h2>
+        <div class="faq-item">
+            <div class="faq-q">这个页面是官方站点吗？</div>
+            <div class="faq-a">不是。属于个人整理的体育资料索引，与任何官方组织无关。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">资料更新频率如何？</div>
+            <div class="faq-a">核心框架每季度刷新，小范围修订不定期。页面顶部会标注最后修订月份。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">可以转载或引用内容吗？</div>
+            <div class="faq-a">摘要性内容允许非商业引用，请注明出处及修订日期。整页转载需联系确认。</div>
+        </div>
+    </div>
+
+    <!-- 自然嵌入链接的句子 -->
+    <div class="link-sentence">
+        若希望访问更完整的资料库与持续更新的索引，可以前往
+        <a href="https://chinese-vtiyu.com">V体育</a>
+        浏览更详细的分类条目。
+    </div>
+
+    <!-- 脚注 -->
+    <div class="footnote">
+        <span>资料整理 · 仅供学习参考</span>
+        &nbsp;·&nbsp; 版本标识 2eb340dd3c7d7315
+        &nbsp;·&nbsp; 最后修订 2025.04
+    </div>
+</div>
+</body>
+</html>
